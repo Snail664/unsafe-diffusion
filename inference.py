@@ -12,6 +12,7 @@ import open_clip
 from baselines import safety_filter_check, Q16_check
 import config, tqdm
 from train import BinaryAnnotatedDataset, MHSafetyClassifier
+import os
 
 device = torch.device("cuda")
 torch.manual_seed(2022)
@@ -54,8 +55,8 @@ def multiheaded_check(loader, checkpoints):
     return res
 
 def main(opt):
-    
-    mh_checkpoints = "./checkpoints/multi-headed"
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    mh_checkpoints = current_directory + "/checkpoints/multi-headed"
     
     output_dir = opt.output_dir
     Path(output_dir).mkdir(exist_ok=True, parents=True)

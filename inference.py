@@ -39,7 +39,7 @@ def multiheaded_check(loader, checkpoints):
     res = {}
     with torch.no_grad():
         for head in unsafe_contents:
-            model.projection_head.load_state_dict(torch.load(f"{checkpoints}/{head}_head.pt"))
+            model.projection_head.load_state_dict(torch.load(f"{checkpoints}/{head}.pt"))
             model.projection_head.eval()
             
             res[head] = []
